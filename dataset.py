@@ -124,16 +124,16 @@ class Dataset:
         pos_neg_group_size = 1 + neg_ratio
         facts1 = np.repeat(np.copy(bp_facts), pos_neg_group_size, axis=0)
         facts2 = np.copy(facts1)
-        rand_nums1 = np.random.randint(low=1, high=self.numEnt(), size=facts1.shape[0])
+        rand_nums1 = np.random.randint(low=1, high=self.numEnt(), size=facts1.shape[0])     #size=batch_size * pos_neg_group_size
         rand_nums2 = np.random.randint(low=1, high=self.numEnt(), size=facts2.shape[0])
         
-        for i in range(facts1.shape[0] // pos_neg_group_size):
-            rand_nums1[i * pos_neg_group_size] = 0
+        for i in range(facts1.shape[0] // pos_neg_group_size):        #equivalent to loop through batch_size
+            rand_nums1[i * pos_neg_group_size] = 0                    #add NO rand_nums to the end fact of each batch
             rand_nums2[i * pos_neg_group_size] = 0
         
-        facts1[:,0] = (facts1[:,0] + rand_nums1) % self.numEnt()
-        facts2[:,2] = (facts2[:,2] + rand_nums2) % self.numEnt()
-        return np.concatenate((facts1, facts2), axis=0)
+        facts1[:,0] = (facts1[:,0] + rand_nums1) % self.numEnt()      #add rand_nums to the first fact elements (u)
+        facts2[:,2] = (facts2[:,2] + rand_nums2) % self.numEnt()      #add rand_nums to the third fact elements (v)
+        return np.concatenate((facts1, facts2), axis=0)               #stack the two modified facts list as negative facts
     
     def nextBatch(self, batch_size, neg_ratio=1):
         bp_facts = self.nextPosBatch(batch_size)
