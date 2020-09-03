@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 class Params:
-
+#c.f. main.py for detailed args definition
     def __init__(self, 
                  ne=500, 
                  bsize=512, 
@@ -26,7 +26,7 @@ class Params:
         self.save_each = save_each
         self.neg_ratio = neg_ratio
         self.dropout = dropout
-        self.se_prop = se_prop
+        self.se_prop = se_prop           #static embedding proportion
         
     def str_(self):
         return str(self.ne) + "_" + str(self.bsize) + "_" + str(self.lr) + "_" + str(self.reg_lambda) + "_" + str(self.s_emb_dim) + "_" + str(self.neg_ratio) + "_" + str(self.dropout) + "_" + str(self.t_emb_dim) + "_" + str(self.save_each) + "_" + str(self.se_prop) 
