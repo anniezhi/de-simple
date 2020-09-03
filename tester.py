@@ -27,13 +27,13 @@ class Tester:
     def replaceAndShred(self, fact, raw_or_fil, head_or_tail):
         head, rel, tail, years, months, days = fact
         if head_or_tail == "head":
-            ret_facts = [(i, rel, tail, years, months, days) for i in range(self.dataset.numEnt())]
+            ret_facts = [(i, rel, tail, years, months, days) for i in range(self.dataset.numEnt())]     #replace u by id
         if head_or_tail == "tail":
-            ret_facts = [(head, rel, i, years, months, days) for i in range(self.dataset.numEnt())]
+            ret_facts = [(head, rel, i, years, months, days) for i in range(self.dataset.numEnt())]     #replace v by id
         
         if raw_or_fil == "raw":
             ret_facts = [tuple(fact)] + ret_facts
-        elif raw_or_fil == "fil":
+        elif raw_or_fil == "fil":                       #"fil": filtered setting adopted in TransE
             ret_facts = [tuple(fact)] + list(set(ret_facts) - self.dataset.all_facts_as_tuples)
         
         return shredFacts(np.array(ret_facts))
