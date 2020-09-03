@@ -19,7 +19,7 @@ class DE_SimplE(torch.nn.Module):
         
         self.ent_embs_h = nn.Embedding(dataset.numEnt(), params.s_emb_dim).cuda()        #h: head        s: static
         self.ent_embs_t = nn.Embedding(dataset.numEnt(), params.s_emb_dim).cuda()        #t: tail        t: temporal
-        self.rel_embs_f = nn.Embedding(dataset.numRel(), params.s_emb_dim+params.t_emb_dim).cuda()       #t_emb_dim inserted for rel because 
+        self.rel_embs_f = nn.Embedding(dataset.numRel(), params.s_emb_dim+params.t_emb_dim).cuda()       #t_emb_dim inserted for rel because?
         self.rel_embs_i = nn.Embedding(dataset.numRel(), params.s_emb_dim+params.t_emb_dim).cuda()
         
         self.create_time_embedds()
