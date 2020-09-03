@@ -43,14 +43,14 @@ class Trainer:
             while not last_batch:
                 optimizer.zero_grad()
                 
-                heads, rels, tails, years, months, days = self.dataset.nextBatch(self.params.bsize, neg_ratio=self.params.neg_ratio)
+                heads, rels, tails, years, months, days = self.dataset.nextBatch(self.params.bsize, neg_ratio=self.params.neg_ratio)      #a list of pos-neg mixed facts, shredded
                 last_batch = self.dataset.wasLastBatch()
                 
                 scores = self.model(heads, rels, tails, years, months, days)
                 
                 ###Added for softmax####
-                num_examples = int(heads.shape[0] / (1 + self.params.neg_ratio))
-                scores_reshaped = scores.view(num_examples, self.params.neg_ratio+1)
+                num_examples = int(heads.shape[0] / (1 + self.params.neg_ratio))      #num_examples = length of lists (from nextBatch) / pos_neg_size = 2*batch_size
+                scores_reshaped = scores.view(num_examples, self.params.neg_ratio+1)  #view() approx. = reshape
                 l = torch.zeros(num_examples).long().cuda()
                 loss = loss_f(scores_reshaped, l)
                 loss.backward()
