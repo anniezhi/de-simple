@@ -50,7 +50,7 @@ class Trainer:
                 
                 ###Added for softmax####
                 num_examples = int(heads.shape[0] / (1 + self.params.neg_ratio))      #num_examples = length of lists (from nextBatch) / pos_neg_size = 2*batch_size
-                scores_reshaped = scores.view(num_examples, self.params.neg_ratio+1)  #view() approx. = reshape
+                scores_reshaped = scores.view(num_examples, self.params.neg_ratio+1)  #view() approx. = reshape  #result: each sample as a row, each row contains a batch of facts
                 l = torch.zeros(num_examples).long().cuda()
                 loss = loss_f(scores_reshaped, l)
                 loss.backward()
