@@ -17,12 +17,12 @@ class Params:
                  save_each=50,  
                  se_prop=0.9 ):
 
-        self.ne = ne
-        self.bsize = bsize
+        self.ne = ne         #number of epochs
+        self.bsize = bsize   #batch size
         self.lr = lr
-        self.reg_lambda = reg_lambda
-        self.s_emb_dim = int(se_prop*emb_dim)
-        self.t_emb_dim = emb_dim - int(se_prop*emb_dim)
+        self.reg_lambda = reg_lambda     #regularization strength
+        self.s_emb_dim = int(se_prop*emb_dim)     #static embedding dimension
+        self.t_emb_dim = emb_dim - int(se_prop*emb_dim)      #temporal embedding dimension
         self.save_each = save_each
         self.neg_ratio = neg_ratio
         self.dropout = dropout
