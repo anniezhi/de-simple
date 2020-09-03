@@ -55,7 +55,7 @@ class Trainer:
                 loss = loss_f(scores_reshaped, l)
                 loss.backward()
                 optimizer.step()
-                total_loss += loss.cpu().item()
+                total_loss += loss.cpu().item()        #cpu() specified because cpu and gpu handles float(float32) differently for torch
                 
             print(time.time() - start)
             print("Loss in iteration " + str(epoch) + ": " + str(total_loss) + "(" + self.model_name + "," + self.dataset.name + ")")
