@@ -25,13 +25,13 @@ class Trainer:
         self.params = params
         
     def train(self, early_stop=False):
-        self.model.train()
+        self.model.train()   #explicitly state training mode
         
         optimizer = torch.optim.Adam(
             self.model.parameters(), 
             lr=self.params.lr, 
             weight_decay=self.params.reg_lambda
-        ) #weight_decay corresponds to L2 regularization
+        ) #weight_decay corresponds to L2 regularization #for SGD
         
         loss_f = nn.CrossEntropyLoss()
         
