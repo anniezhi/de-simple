@@ -1,3 +1,5 @@
+# This is an annotated and commented version of de-simple by BorealisAI.
+
 ## Diachronic Embedding for Temporal Knowledge Graph Completion
 This repository contains code for the reprsentation proposed in [Diachronic Embedding for Temporal Knowledge Graph Completion](https://arxiv.org/pdf/1907.03143.pdf) paper.
 ## Installation
