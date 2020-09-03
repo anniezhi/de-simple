@@ -33,7 +33,7 @@ class Tester:
         
         if raw_or_fil == "raw":
             ret_facts = [tuple(fact)] + ret_facts
-        elif raw_or_fil == "fil":                       #"fil": filtered setting adopted in TransE
+        elif raw_or_fil == "fil":                       #"fil": filtered setting adopted in TransE ([4] in citation)
             ret_facts = [tuple(fact)] + list(set(ret_facts) - self.dataset.all_facts_as_tuples)
         
         return shredFacts(np.array(ret_facts))
